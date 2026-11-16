@@ -1,0 +1,63 @@
+{
+ "dataset": "mHomeGes (Liu et al., 2020), continuous recordings segmented into 24,105 repetitions (see README)",
+ "n_samples": 24105,
+ "LUO5": {
+  "description": "5-fold leave-users-out (sklearn GroupKFold(5) grouped by user over our segmented sample order)",
+  "test_users_per_fold": {
+   "0": [
+    "802",
+    "804",
+    "810",
+    "819",
+    "821"
+   ],
+   "1": [
+    "806",
+    "807",
+    "811",
+    "822"
+   ],
+   "2": [
+    "801",
+    "805",
+    "815",
+    "818",
+    "823"
+   ],
+   "3": [
+    "800",
+    "808",
+    "812",
+    "813",
+    "820"
+   ],
+   "4": [
+    "803",
+    "809",
+    "814",
+    "816",
+    "824",
+    "825"
+   ]
+  }
+ },
+ "cross_distance": {
+  "description": "Train on all samples recorded at <=1.8 m, test on all samples at >=2.4 m; users overlap (distance shift only); 1.95-2.25 m unused",
+  "train_distances_m": [
+   "1.2m",
+   "1.35m",
+   "1.5m",
+   "1.65m",
+   "1.8m"
+  ],
+  "test_distances_m": [
+   "2.4m",
+   "2.55m",
+   "2.7m",
+   "2.85m",
+   "3m"
+  ],
+  "n_train": 9509,
+  "n_test": 10872
+ }
+}
