@@ -7,3 +7,5 @@ pandas>=2.0
 thop>=0.1.1
 onnx>=1.16
 onnxruntime>=1.18
+# optional, for mmwave_gesture.plot_interaction
+matplotlib>=3.8

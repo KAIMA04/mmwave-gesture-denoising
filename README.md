@@ -17,6 +17,7 @@ Kai Ma (University of Liverpool; now with Duke Kunshan University)
 | `mmwave_gesture/configs.py` | Every model / input configuration used in the paper |
 | `mmwave_gesture/train.py` | Training and evaluation under LUO5, cross-room, primary→supplementary (Pantomime), and LUO5, cross-distance (mHomeGes) |
 | `mmwave_gesture/stats.py` | User-level Wilcoxon and sign-flip permutation tests, bootstrap CIs, Holm correction, pooled accuracies |
+| `mmwave_gesture/plot_interaction.py` | Paper figure of the local-minus-global contrast (per-sample vs. fixed scale) from the `stats.py` output |
 | `mmwave_gesture/benchmark.py` | Parameters, MACs and single-thread CPU latency (PyTorch and ONNX Runtime) |
 | `splits/` | Per-user splits as JSON and CSV (see below) |
 | `tests/smoke_test.py` | CPU smoke test on synthetic data |
@@ -50,6 +51,9 @@ python -m mmwave_gesture.train tvoxA,abl_noden --dataset mhomeges --protocols lu
 
 # 3. User-level statistics: needs all configurations of the paper (see stats.py) for 3 seeds; 302 tests, Holm over all
 python -m mmwave_gesture.stats --data data --runs runs --out stats.json
+
+# Figure of the interaction contrast (needs matplotlib)
+python -m mmwave_gesture.plot_interaction --stats stats.json --out interaction.pdf
 
 # 4. Complexity and latency
 python -m mmwave_gesture.benchmark --data data --out latency.json
