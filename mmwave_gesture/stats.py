@@ -21,10 +21,15 @@ PANT_PROTOS = ['LUO5', 'open->office', 'office->open']
 
 
 def variant(m, v):
-    """Configuration name of model m with input variant v (DB, raw, gateDB, fixDB, fixraw)."""
+    """Configuration name of model m with input variant v.
+
+    Per-sample normalisation: DB, raw, gate, gateDB. Fixed scale: fixDB, fixraw, fixgate, fixgateDB.
+    """
     if m == 'tvoxA':
-        return {'DB': 'tvoxA', 'raw': 'abl_noden', 'gateDB': 'abl_gatedb', 'fixDB': 'tvoxA_fix', 'fixraw': 'abl_noden_fix'}[v]
-    return m + {'DB': '', 'raw': '_noden', 'gateDB': '_gatedb', 'fixDB': '_fix', 'fixraw': '_noden_fix'}[v]
+        return {'DB': 'tvoxA', 'raw': 'abl_noden', 'gate': 'abl_gate', 'gateDB': 'abl_gatedb', 'fixDB': 'tvoxA_fix',
+                'fixraw': 'abl_noden_fix', 'fixgate': 'abl_gate_fix', 'fixgateDB': 'abl_gatedb_fix'}[v]
+    return m + {'DB': '', 'raw': '_noden', 'gate': '_gate', 'gateDB': '_gatedb', 'fixDB': '_fix', 'fixraw': '_noden_fix',
+                'fixgate': '_gate_fix', 'fixgateDB': '_gatedb_fix'}[v]
 
 
 def load_preds(path):
@@ -185,6 +190,28 @@ def paper_family(S):
                     ('abl_gatedb', 'pointnet_t_tiny_gatedb', 'PN+t-tiny-A (gateDB)'), ('abl_noden_fix', 'pointnet_t_tiny_noden_fix', 'PN+t-tiny-A (FIX raw)'),
                     ('tvoxA', 'abl_noden_fix', 'A FIXraw-perSampleDB'), ('p4t_aug', 'p4t_aug_noden_fix', 'P4T FIXraw-perSampleDB')]:
         S.test('pant', 'LUO5', a, b, l, 'ctl_compute')
+    # gate-only for the remaining six models; fixed scale x {gate, gate->DBSCAN}
+    gate = {m: variant(m, 'gate') for m in raw}
+    for m in ['pn2_t_aug', 'dgcnn_t_aug', 'pantomime_aug', 'radhar', 'pointnet_t_tiny', 'p4t_tiny']:
+        for proto in PANT_PROTOS:
+            S.test('pant', proto, m, gate[m], NAMES[m] + ' gate-DB', 'gate')
+            S.test('pant', proto, raw[m], gate[m], NAMES[m] + ' gate-raw', 'gate')
+    gdb, fr = V['gateDB'], V['fixraw']
+    fg, fgdb = ({m: variant(m, v) for m in raw} for v in ['fixgate', 'fixgateDB'])
+    order = ['tvoxA', 'p4t_aug', 'pointnet_t_aug', 'pn2_t_aug', 'dgcnn_t_aug', 'pantomime_aug', 'radhar', 'pointnet_t_tiny', 'p4t_tiny']
+    for proto in PANT_PROTOS:
+        S.contrast('pant', proto, [(gdb[m], gate[m]) for m in LOCAL], [(gdb[m], gate[m]) for m in GLOBAL], 'interaction gate-vs-gateDB', 'ctl_gateonly')
+        S.contrast('pant', proto, [(gdb[m], gate[m]) for m in LOCAL[:-1]], [(gdb[m], gate[m]) for m in GLOBAL + ['pantomime_aug']],
+                   'interaction gate-vs-gateDB (PS global)', 'ctl_gateonly_alt')
+        S.contrast('pant', proto, [(fgdb[m], fg[m]) for m in LOCAL], [(fgdb[m], fg[m]) for m in GLOBAL], 'interaction FIXED gate-vs-gateDB', 'ctl_fixgate')
+        S.contrast('pant', proto, [(fgdb[m], fg[m]) for m in LOCAL[:-1]], [(fgdb[m], fg[m]) for m in GLOBAL + ['pantomime_aug']],
+                   'interaction FIXED gate-vs-gateDB (PS global)', 'ctl_fixgate_alt')
+        for m in order:
+            S.test('pant', proto, fr[m], fg[m], NAMES[m] + ' FIX gate-raw', 'ctl_fixgate')
+            S.test('pant', proto, fgdb[m], fg[m], NAMES[m] + ' FIX gate-gateDB', 'ctl_fixgate')
+    for a, b, l in [('abl_gate_fix', 'p4t_tiny_gate_fix', 'P4T-tiny-A (FIX gate)'), ('abl_gate_fix', 'pointnet_t_tiny_gate_fix', 'PN+t-tiny-A (FIX gate)'),
+                    ('p4t_aug_noden_fix', 'pn2_t_aug_gate_fix', 'PN++ FIX gate - P4T-lite FIX raw')]:
+        S.test('pant', 'LUO5', a, b, l, 'ctl_compute')
     S.holm()
 
 
@@ -195,13 +222,14 @@ def main():
     ap.add_argument('--out', default='stats.json')
     a = ap.parse_args()
     S = Stats(a.data, a.runs)
-    print('pooled accuracy (%), mean over seeds: DB / raw / gate->DB / fixed DB / fixed raw')
+    arms = ['DB', 'raw', 'gate', 'gateDB', 'fixDB', 'fixraw', 'fixgate', 'fixgateDB']
+    print('pooled accuracy (%), mean over seeds:', ' / '.join(arms))
     pooled = {}
     for m, n in NAMES.items():
         if m == 'tvoxF':
             continue
         for proto in PANT_PROTOS:
-            v = [S.pooled('pant', variant(m, x), proto) for x in ['DB', 'raw', 'gateDB', 'fixDB', 'fixraw']]
+            v = [S.pooled('pant', variant(m, x), proto) for x in arms]
             pooled[f'{n}|{proto}'] = v
         print('%-16s' % n, '  '.join(proto + ' ' + '/'.join('--' if x is None else '%.1f' % x[0] for x in pooled[f'{n}|{proto}']) for proto in PANT_PROTOS))
     paper_family(S)

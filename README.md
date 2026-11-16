@@ -48,7 +48,7 @@ python -m mmwave_gesture.prepare_mhomeges --root PATH/mHomeGes-dataset-master --
 python -m mmwave_gesture.train tvoxA,abl_noden,p4t_tiny,p4t_tiny_noden --dataset pantomime --seeds 0,1,2
 python -m mmwave_gesture.train tvoxA,abl_noden --dataset mhomeges --protocols luo5,xdist --seeds 0,1,2
 
-# 3. User-level statistics: needs all configurations of the paper (see stats.py) for 3 seeds
+# 3. User-level statistics: needs all configurations of the paper (see stats.py) for 3 seeds; 302 tests, Holm over all
 python -m mmwave_gesture.stats --data data --runs runs --out stats.json
 
 # 4. Complexity and latency
