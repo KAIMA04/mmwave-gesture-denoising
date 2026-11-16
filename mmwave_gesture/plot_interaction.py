@@ -2,7 +2,8 @@
 
 Reads the test list written by stats.py and plots, for each protocol, the contrast of skipping DBSCAN
 (raw vs. DBSCAN, and gate vs. gate->DBSCAN) under per-sample and fixed-scale normalisation.
-Filled markers: Holm-adjusted Wilcoxon p < 0.05.
+Error bars: unadjusted 95% bootstrap CIs. Filled markers: Wilcoxon p < 0.05 after Holm within the test's family
+(`p_wil_fam`; falls back to `p_wil_holm` for older stats files).
 
 Usage: python -m mmwave_gesture.plot_interaction --stats stats.json --out interaction.pdf
 """
@@ -25,6 +26,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--stats', default='stats.json')
     ap.add_argument('--out', default='interaction.pdf')
+    ap.add_argument('--margin', type=float, default=2.0, help='equivalence margin drawn as a grey band (0: none)')
     a = ap.parse_args()
     rows = {(r['ds'], r['proto'], r['label']): r for r in load(a.stats)}
     plt.rcParams.update({'font.size': 7, 'pdf.fonttype': 42, 'ps.fonttype': 42})
@@ -37,8 +39,10 @@ def main():
                 lo, hi = r['ci']
                 xi = i + (k - 0.5) * 0.28
                 ax.errorbar(xi, r['mean'], yerr=[[r['mean'] - lo], [hi - r['mean']]], fmt=mk, color=col, ms=3.5, lw=0.9, capsize=1.5,
-                            mfc=col if r['p_wil_holm'] < 0.05 else 'white', label=name if (i == 0 and proto == 'office->open') else None)
+                            mfc=col if r.get('p_wil_fam', r.get('p_wil_holm')) < 0.05 else 'white', label=name if (i == 0 and proto == 'office->open') else None)
         ax.axhline(0, color='0.5', lw=0.6)
+        if a.margin > 0:
+            ax.axhspan(-a.margin, a.margin, color='0.85', lw=0, zorder=0.5)
         ax.set_xticks(range(len(xs)))
         ax.set_xticklabels(xs, fontsize=5.5)
         ax.set_xlim(-0.5, len(xs) - 0.5)

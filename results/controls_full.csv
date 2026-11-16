@@ -1,0 +1,397 @@
+dataset,model,protocol,input,acc_mean_pct,acc_std_pct
+pantomime,PointNet+t,LUO5,DBSCAN,91.36,0.05
+pantomime,PointNet+t,LUO5,raw,90.23,0.19
+pantomime,PointNet+t,LUO5,gate,90.66,0.28
+pantomime,PointNet+t,LUO5,gate+DBSCAN,94.19,0.21
+pantomime,PointNet+t,LUO5,fixed DBSCAN,90.00,0.07
+pantomime,PointNet+t,LUO5,fixed raw,92.61,0.17
+pantomime,PointNet+t,LUO5,fixed gate,92.01,0.07
+pantomime,PointNet+t,LUO5,fixed gate+DBSCAN,92.35,0.08
+pantomime,PointNet++,LUO5,DBSCAN,93.37,0.14
+pantomime,PointNet++,LUO5,raw,95.20,0.08
+pantomime,PointNet++,LUO5,gate,96.15,0.16
+pantomime,PointNet++,LUO5,gate+DBSCAN,95.58,0.06
+pantomime,PointNet++,LUO5,fixed DBSCAN,93.75,0.03
+pantomime,PointNet++,LUO5,fixed raw,96.91,0.19
+pantomime,PointNet++,LUO5,fixed gate,97.51,0.05
+pantomime,PointNet++,LUO5,fixed gate+DBSCAN,95.95,0.12
+pantomime,DGCNN-lite+t,LUO5,DBSCAN,93.19,0.07
+pantomime,DGCNN-lite+t,LUO5,raw,95.62,0.04
+pantomime,DGCNN-lite+t,LUO5,gate,95.90,0.09
+pantomime,DGCNN-lite+t,LUO5,gate+DBSCAN,95.85,0.05
+pantomime,DGCNN-lite+t,LUO5,fixed DBSCAN,93.26,0.28
+pantomime,DGCNN-lite+t,LUO5,fixed raw,96.79,0.09
+pantomime,DGCNN-lite+t,LUO5,fixed gate,96.67,0.02
+pantomime,DGCNN-lite+t,LUO5,fixed gate+DBSCAN,95.76,0.19
+pantomime,P4T-lite,LUO5,DBSCAN,93.09,0.17
+pantomime,P4T-lite,LUO5,raw,95.76,0.23
+pantomime,P4T-lite,LUO5,gate,95.92,0.20
+pantomime,P4T-lite,LUO5,gate+DBSCAN,95.46,0.26
+pantomime,P4T-lite,LUO5,fixed DBSCAN,93.40,0.21
+pantomime,P4T-lite,LUO5,fixed raw,97.08,0.03
+pantomime,P4T-lite,LUO5,fixed gate,96.46,0.14
+pantomime,P4T-lite,LUO5,fixed gate+DBSCAN,95.51,0.21
+pantomime,Pantomime-style,LUO5,DBSCAN,92.19,0.03
+pantomime,Pantomime-style,LUO5,raw,91.30,0.25
+pantomime,Pantomime-style,LUO5,gate,92.70,0.31
+pantomime,Pantomime-style,LUO5,gate+DBSCAN,94.51,0.14
+pantomime,Pantomime-style,LUO5,fixed DBSCAN,91.81,0.20
+pantomime,Pantomime-style,LUO5,fixed raw,94.11,0.14
+pantomime,Pantomime-style,LUO5,fixed gate,93.42,0.26
+pantomime,Pantomime-style,LUO5,fixed gate+DBSCAN,93.40,0.15
+pantomime,RadHAR,LUO5,DBSCAN,90.63,0.14
+pantomime,RadHAR,LUO5,raw,90.60,0.27
+pantomime,RadHAR,LUO5,gate,90.36,0.36
+pantomime,RadHAR,LUO5,gate+DBSCAN,92.91,0.13
+pantomime,RadHAR,LUO5,fixed DBSCAN,88.41,0.27
+pantomime,RadHAR,LUO5,fixed raw,93.28,0.24
+pantomime,RadHAR,LUO5,fixed gate,91.48,0.31
+pantomime,RadHAR,LUO5,fixed gate+DBSCAN,89.99,0.42
+pantomime,PointNet+t-tiny,LUO5,DBSCAN,91.46,0.11
+pantomime,PointNet+t-tiny,LUO5,raw,90.45,0.47
+pantomime,PointNet+t-tiny,LUO5,gate,90.93,0.10
+pantomime,PointNet+t-tiny,LUO5,gate+DBSCAN,94.28,0.20
+pantomime,PointNet+t-tiny,LUO5,fixed DBSCAN,89.95,0.08
+pantomime,PointNet+t-tiny,LUO5,fixed raw,92.54,0.17
+pantomime,PointNet+t-tiny,LUO5,fixed gate,91.93,0.08
+pantomime,PointNet+t-tiny,LUO5,fixed gate+DBSCAN,92.31,0.13
+pantomime,P4T-tiny,LUO5,DBSCAN,93.05,0.12
+pantomime,P4T-tiny,LUO5,raw,95.44,0.08
+pantomime,P4T-tiny,LUO5,gate,95.48,0.05
+pantomime,P4T-tiny,LUO5,gate+DBSCAN,95.33,0.21
+pantomime,P4T-tiny,LUO5,fixed DBSCAN,93.20,0.16
+pantomime,P4T-tiny,LUO5,fixed raw,96.90,0.14
+pantomime,P4T-tiny,LUO5,fixed gate,96.46,0.20
+pantomime,P4T-tiny,LUO5,fixed gate+DBSCAN,95.51,0.17
+pantomime,TVoxNet-A,LUO5,DBSCAN,91.92,0.04
+pantomime,TVoxNet-A,LUO5,raw,92.36,0.24
+pantomime,TVoxNet-A,LUO5,gate,92.99,0.15
+pantomime,TVoxNet-A,LUO5,gate+DBSCAN,94.48,0.11
+pantomime,TVoxNet-A,LUO5,fixed DBSCAN,89.50,0.22
+pantomime,TVoxNet-A,LUO5,fixed raw,93.64,0.11
+pantomime,TVoxNet-A,LUO5,fixed gate,92.65,0.19
+pantomime,TVoxNet-A,LUO5,fixed gate+DBSCAN,91.44,0.43
+pantomime,PointNet+t,open->office,DBSCAN,88.19,0.46
+pantomime,PointNet+t,open->office,raw,62.55,1.89
+pantomime,PointNet+t,open->office,gate,56.59,0.49
+pantomime,PointNet+t,open->office,gate+DBSCAN,90.92,0.18
+pantomime,PointNet+t,open->office,fixed DBSCAN,82.52,0.59
+pantomime,PointNet+t,open->office,fixed raw,66.70,2.10
+pantomime,PointNet+t,open->office,fixed gate,61.64,2.24
+pantomime,PointNet+t,open->office,fixed gate+DBSCAN,84.38,0.34
+pantomime,PointNet++,open->office,DBSCAN,91.58,0.26
+pantomime,PointNet++,open->office,raw,84.62,0.65
+pantomime,PointNet++,open->office,gate,77.30,0.76
+pantomime,PointNet++,open->office,gate+DBSCAN,94.41,0.08
+pantomime,PointNet++,open->office,fixed DBSCAN,91.92,0.13
+pantomime,PointNet++,open->office,fixed raw,88.89,0.96
+pantomime,PointNet++,open->office,fixed gate,91.17,0.88
+pantomime,PointNet++,open->office,fixed gate+DBSCAN,94.55,0.18
+pantomime,DGCNN-lite+t,open->office,DBSCAN,91.76,0.32
+pantomime,DGCNN-lite+t,open->office,raw,87.26,1.41
+pantomime,DGCNN-lite+t,open->office,gate,75.79,1.45
+pantomime,DGCNN-lite+t,open->office,gate+DBSCAN,94.47,0.21
+pantomime,DGCNN-lite+t,open->office,fixed DBSCAN,90.15,0.06
+pantomime,DGCNN-lite+t,open->office,fixed raw,89.63,2.21
+pantomime,DGCNN-lite+t,open->office,fixed gate,84.11,0.34
+pantomime,DGCNN-lite+t,open->office,fixed gate+DBSCAN,93.08,0.27
+pantomime,P4T-lite,open->office,DBSCAN,92.09,0.42
+pantomime,P4T-lite,open->office,raw,87.28,1.58
+pantomime,P4T-lite,open->office,gate,77.10,0.82
+pantomime,P4T-lite,open->office,gate+DBSCAN,94.42,0.21
+pantomime,P4T-lite,open->office,fixed DBSCAN,90.97,0.52
+pantomime,P4T-lite,open->office,fixed raw,89.94,1.30
+pantomime,P4T-lite,open->office,fixed gate,86.99,2.04
+pantomime,P4T-lite,open->office,fixed gate+DBSCAN,93.65,0.19
+pantomime,Pantomime-style,open->office,DBSCAN,89.51,0.45
+pantomime,Pantomime-style,open->office,raw,64.44,2.79
+pantomime,Pantomime-style,open->office,gate,62.44,3.17
+pantomime,Pantomime-style,open->office,gate+DBSCAN,92.23,0.46
+pantomime,Pantomime-style,open->office,fixed DBSCAN,87.06,0.55
+pantomime,Pantomime-style,open->office,fixed raw,69.58,3.49
+pantomime,Pantomime-style,open->office,fixed gate,62.51,1.04
+pantomime,Pantomime-style,open->office,fixed gate+DBSCAN,88.21,0.77
+pantomime,RadHAR,open->office,DBSCAN,84.63,0.22
+pantomime,RadHAR,open->office,raw,49.00,1.28
+pantomime,RadHAR,open->office,gate,47.07,1.14
+pantomime,RadHAR,open->office,gate+DBSCAN,86.02,0.85
+pantomime,RadHAR,open->office,fixed DBSCAN,79.02,0.91
+pantomime,RadHAR,open->office,fixed raw,71.42,0.63
+pantomime,RadHAR,open->office,fixed gate,70.63,2.64
+pantomime,RadHAR,open->office,fixed gate+DBSCAN,79.21,0.96
+pantomime,PointNet+t-tiny,open->office,DBSCAN,88.60,0.55
+pantomime,PointNet+t-tiny,open->office,raw,63.21,0.37
+pantomime,PointNet+t-tiny,open->office,gate,56.20,0.67
+pantomime,PointNet+t-tiny,open->office,gate+DBSCAN,91.31,0.40
+pantomime,PointNet+t-tiny,open->office,fixed DBSCAN,82.01,0.51
+pantomime,PointNet+t-tiny,open->office,fixed raw,65.34,1.26
+pantomime,PointNet+t-tiny,open->office,fixed gate,57.03,2.05
+pantomime,PointNet+t-tiny,open->office,fixed gate+DBSCAN,84.36,0.21
+pantomime,P4T-tiny,open->office,DBSCAN,91.63,0.15
+pantomime,P4T-tiny,open->office,raw,87.03,1.52
+pantomime,P4T-tiny,open->office,gate,77.47,1.89
+pantomime,P4T-tiny,open->office,gate+DBSCAN,93.85,0.30
+pantomime,P4T-tiny,open->office,fixed DBSCAN,90.67,0.10
+pantomime,P4T-tiny,open->office,fixed raw,88.72,1.65
+pantomime,P4T-tiny,open->office,fixed gate,84.88,0.69
+pantomime,P4T-tiny,open->office,fixed gate+DBSCAN,93.05,0.44
+pantomime,TVoxNet-A,open->office,DBSCAN,88.85,0.16
+pantomime,TVoxNet-A,open->office,raw,68.39,0.24
+pantomime,TVoxNet-A,open->office,gate,64.33,0.60
+pantomime,TVoxNet-A,open->office,gate+DBSCAN,91.52,0.39
+pantomime,TVoxNet-A,open->office,fixed DBSCAN,82.56,0.66
+pantomime,TVoxNet-A,open->office,fixed raw,85.08,0.89
+pantomime,TVoxNet-A,open->office,fixed gate,82.53,0.65
+pantomime,TVoxNet-A,open->office,fixed gate+DBSCAN,84.09,0.61
+pantomime,PointNet+t,office->open,DBSCAN,87.98,0.12
+pantomime,PointNet+t,office->open,raw,81.53,0.60
+pantomime,PointNet+t,office->open,gate,87.00,0.58
+pantomime,PointNet+t,office->open,gate+DBSCAN,90.45,0.17
+pantomime,PointNet+t,office->open,fixed DBSCAN,85.21,0.37
+pantomime,PointNet+t,office->open,fixed raw,84.68,0.83
+pantomime,PointNet+t,office->open,fixed gate,85.13,0.49
+pantomime,PointNet+t,office->open,fixed gate+DBSCAN,86.93,0.15
+pantomime,PointNet++,office->open,DBSCAN,88.93,0.16
+pantomime,PointNet++,office->open,raw,89.77,0.07
+pantomime,PointNet++,office->open,gate,92.05,0.11
+pantomime,PointNet++,office->open,gate+DBSCAN,90.99,0.13
+pantomime,PointNet++,office->open,fixed DBSCAN,90.22,0.34
+pantomime,PointNet++,office->open,fixed raw,93.51,0.16
+pantomime,PointNet++,office->open,fixed gate,94.53,0.16
+pantomime,PointNet++,office->open,fixed gate+DBSCAN,93.00,0.30
+pantomime,DGCNN-lite+t,office->open,DBSCAN,90.00,0.29
+pantomime,DGCNN-lite+t,office->open,raw,91.11,0.08
+pantomime,DGCNN-lite+t,office->open,gate,92.61,0.09
+pantomime,DGCNN-lite+t,office->open,gate+DBSCAN,92.29,0.23
+pantomime,DGCNN-lite+t,office->open,fixed DBSCAN,90.28,0.26
+pantomime,DGCNN-lite+t,office->open,fixed raw,93.65,0.26
+pantomime,DGCNN-lite+t,office->open,fixed gate,93.60,0.41
+pantomime,DGCNN-lite+t,office->open,fixed gate+DBSCAN,92.53,0.20
+pantomime,P4T-lite,office->open,DBSCAN,89.33,0.25
+pantomime,P4T-lite,office->open,raw,90.83,0.58
+pantomime,P4T-lite,office->open,gate,91.96,0.25
+pantomime,P4T-lite,office->open,gate+DBSCAN,91.92,0.41
+pantomime,P4T-lite,office->open,fixed DBSCAN,90.51,0.20
+pantomime,P4T-lite,office->open,fixed raw,94.18,0.36
+pantomime,P4T-lite,office->open,fixed gate,93.71,0.17
+pantomime,P4T-lite,office->open,fixed gate+DBSCAN,92.74,0.47
+pantomime,Pantomime-style,office->open,DBSCAN,87.59,0.50
+pantomime,Pantomime-style,office->open,raw,84.72,0.68
+pantomime,Pantomime-style,office->open,gate,89.05,0.40
+pantomime,Pantomime-style,office->open,gate+DBSCAN,89.76,0.61
+pantomime,Pantomime-style,office->open,fixed DBSCAN,88.12,0.35
+pantomime,Pantomime-style,office->open,fixed raw,87.40,1.74
+pantomime,Pantomime-style,office->open,fixed gate,91.22,0.34
+pantomime,Pantomime-style,office->open,fixed gate+DBSCAN,89.76,0.48
+pantomime,RadHAR,office->open,DBSCAN,85.61,0.86
+pantomime,RadHAR,office->open,raw,80.78,0.97
+pantomime,RadHAR,office->open,gate,81.31,1.27
+pantomime,RadHAR,office->open,gate+DBSCAN,87.19,0.76
+pantomime,RadHAR,office->open,fixed DBSCAN,80.78,0.63
+pantomime,RadHAR,office->open,fixed raw,85.83,1.13
+pantomime,RadHAR,office->open,fixed gate,84.49,1.43
+pantomime,RadHAR,office->open,fixed gate+DBSCAN,80.82,0.91
+pantomime,PointNet+t-tiny,office->open,DBSCAN,87.52,0.18
+pantomime,PointNet+t-tiny,office->open,raw,81.28,0.33
+pantomime,PointNet+t-tiny,office->open,gate,87.39,0.35
+pantomime,PointNet+t-tiny,office->open,gate+DBSCAN,90.36,0.48
+pantomime,PointNet+t-tiny,office->open,fixed DBSCAN,85.14,0.43
+pantomime,PointNet+t-tiny,office->open,fixed raw,84.46,0.75
+pantomime,PointNet+t-tiny,office->open,fixed gate,85.12,0.69
+pantomime,PointNet+t-tiny,office->open,fixed gate+DBSCAN,86.43,0.10
+pantomime,P4T-tiny,office->open,DBSCAN,88.90,0.29
+pantomime,P4T-tiny,office->open,raw,90.79,0.51
+pantomime,P4T-tiny,office->open,gate,91.66,0.46
+pantomime,P4T-tiny,office->open,gate+DBSCAN,91.67,0.27
+pantomime,P4T-tiny,office->open,fixed DBSCAN,89.87,0.09
+pantomime,P4T-tiny,office->open,fixed raw,93.71,0.14
+pantomime,P4T-tiny,office->open,fixed gate,93.04,0.44
+pantomime,P4T-tiny,office->open,fixed gate+DBSCAN,92.13,0.51
+pantomime,TVoxNet-A,office->open,DBSCAN,86.18,0.21
+pantomime,TVoxNet-A,office->open,raw,84.22,0.56
+pantomime,TVoxNet-A,office->open,gate,85.87,0.48
+pantomime,TVoxNet-A,office->open,gate+DBSCAN,88.31,0.50
+pantomime,TVoxNet-A,office->open,fixed DBSCAN,84.22,0.35
+pantomime,TVoxNet-A,office->open,fixed raw,87.43,0.28
+pantomime,TVoxNet-A,office->open,fixed gate,85.92,0.56
+pantomime,TVoxNet-A,office->open,fixed gate+DBSCAN,84.91,0.82
+pantomime,PointNet+t,supp:restaurant,DBSCAN,82.18,0.24
+pantomime,PointNet+t,supp:restaurant,raw,72.90,0.34
+pantomime,PointNet+t,supp:restaurant,gate,88.87,0.55
+pantomime,PointNet+t,supp:restaurant,gate+DBSCAN,89.38,0.85
+pantomime,PointNet++,supp:restaurant,DBSCAN,83.02,0.12
+pantomime,PointNet++,supp:restaurant,raw,87.54,0.42
+pantomime,PointNet++,supp:restaurant,gate,92.24,0.21
+pantomime,PointNet++,supp:restaurant,gate+DBSCAN,91.31,0.26
+pantomime,DGCNN-lite+t,supp:restaurant,DBSCAN,83.63,0.21
+pantomime,DGCNN-lite+t,supp:restaurant,raw,87.14,0.80
+pantomime,DGCNN-lite+t,supp:restaurant,gate,92.78,0.38
+pantomime,DGCNN-lite+t,supp:restaurant,gate+DBSCAN,92.44,0.33
+pantomime,P4T-lite,supp:restaurant,DBSCAN,83.47,0.30
+pantomime,P4T-lite,supp:restaurant,raw,90.91,0.48
+pantomime,P4T-lite,supp:restaurant,gate,91.88,0.34
+pantomime,P4T-lite,supp:restaurant,gate+DBSCAN,91.41,0.28
+pantomime,Pantomime-style,supp:restaurant,DBSCAN,83.13,0.19
+pantomime,Pantomime-style,supp:restaurant,raw,83.33,0.16
+pantomime,Pantomime-style,supp:restaurant,gate,93.83,0.45
+pantomime,Pantomime-style,supp:restaurant,gate+DBSCAN,92.72,0.21
+pantomime,RadHAR,supp:restaurant,DBSCAN,81.67,0.37
+pantomime,RadHAR,supp:restaurant,raw,82.10,0.42
+pantomime,RadHAR,supp:restaurant,gate,87.18,0.43
+pantomime,RadHAR,supp:restaurant,gate+DBSCAN,88.49,0.55
+pantomime,PointNet+t-tiny,supp:restaurant,DBSCAN,82.16,0.09
+pantomime,PointNet+t-tiny,supp:restaurant,raw,71.96,0.98
+pantomime,PointNet+t-tiny,supp:restaurant,gate,88.61,0.42
+pantomime,PointNet+t-tiny,supp:restaurant,gate+DBSCAN,88.79,0.28
+pantomime,P4T-tiny,supp:restaurant,DBSCAN,83.33,0.36
+pantomime,P4T-tiny,supp:restaurant,raw,90.18,0.90
+pantomime,P4T-tiny,supp:restaurant,gate,91.71,0.38
+pantomime,P4T-tiny,supp:restaurant,gate+DBSCAN,91.35,0.19
+pantomime,TVoxNet-A,supp:restaurant,DBSCAN,82.54,0.25
+pantomime,TVoxNet-A,supp:restaurant,raw,86.27,0.50
+pantomime,TVoxNet-A,supp:restaurant,gate,89.17,0.10
+pantomime,TVoxNet-A,supp:restaurant,gate+DBSCAN,88.83,0.21
+pantomime,PointNet+t,supp:industrial,DBSCAN,96.33,0.23
+pantomime,PointNet+t,supp:industrial,raw,73.99,0.57
+pantomime,PointNet+t,supp:industrial,gate,95.20,0.15
+pantomime,PointNet+t,supp:industrial,gate+DBSCAN,96.67,0.47
+pantomime,PointNet++,supp:industrial,DBSCAN,97.52,0.28
+pantomime,PointNet++,supp:industrial,raw,91.01,0.82
+pantomime,PointNet++,supp:industrial,gate,97.50,0.16
+pantomime,PointNet++,supp:industrial,gate+DBSCAN,97.50,0.00
+pantomime,DGCNN-lite+t,supp:industrial,DBSCAN,98.13,0.19
+pantomime,DGCNN-lite+t,supp:industrial,raw,90.73,0.79
+pantomime,DGCNN-lite+t,supp:industrial,gate,97.98,0.06
+pantomime,DGCNN-lite+t,supp:industrial,gate+DBSCAN,98.08,0.24
+pantomime,P4T-lite,supp:industrial,DBSCAN,97.82,0.30
+pantomime,P4T-lite,supp:industrial,raw,92.38,1.29
+pantomime,P4T-lite,supp:industrial,gate,98.45,0.00
+pantomime,P4T-lite,supp:industrial,gate+DBSCAN,97.82,0.66
+pantomime,Pantomime-style,supp:industrial,DBSCAN,98.25,0.18
+pantomime,Pantomime-style,supp:industrial,raw,80.54,0.43
+pantomime,Pantomime-style,supp:industrial,gate,98.23,0.41
+pantomime,Pantomime-style,supp:industrial,gate+DBSCAN,98.59,0.25
+pantomime,RadHAR,supp:industrial,DBSCAN,95.36,0.45
+pantomime,RadHAR,supp:industrial,raw,88.77,0.58
+pantomime,RadHAR,supp:industrial,gate,92.12,0.23
+pantomime,RadHAR,supp:industrial,gate+DBSCAN,95.99,0.39
+pantomime,PointNet+t-tiny,supp:industrial,DBSCAN,96.29,0.24
+pantomime,PointNet+t-tiny,supp:industrial,raw,73.61,0.33
+pantomime,PointNet+t-tiny,supp:industrial,gate,95.02,0.42
+pantomime,PointNet+t-tiny,supp:industrial,gate+DBSCAN,96.49,0.36
+pantomime,P4T-tiny,supp:industrial,DBSCAN,97.50,0.31
+pantomime,P4T-tiny,supp:industrial,raw,92.48,0.74
+pantomime,P4T-tiny,supp:industrial,gate,98.00,0.15
+pantomime,P4T-tiny,supp:industrial,gate+DBSCAN,97.72,0.17
+pantomime,TVoxNet-A,supp:industrial,DBSCAN,96.51,0.48
+pantomime,TVoxNet-A,supp:industrial,raw,91.51,0.95
+pantomime,TVoxNet-A,supp:industrial,gate,94.94,0.49
+pantomime,TVoxNet-A,supp:industrial,gate+DBSCAN,96.51,0.35
+pantomime,PointNet+t,supp:occluded,DBSCAN,23.77,1.19
+pantomime,PointNet+t,supp:occluded,raw,50.87,0.07
+pantomime,PointNet+t,supp:occluded,gate,15.20,2.05
+pantomime,PointNet+t,supp:occluded,gate+DBSCAN,23.06,1.90
+pantomime,PointNet++,supp:occluded,DBSCAN,23.89,0.36
+pantomime,PointNet++,supp:occluded,raw,70.75,3.80
+pantomime,PointNet++,supp:occluded,gate,61.35,2.79
+pantomime,PointNet++,supp:occluded,gate+DBSCAN,31.51,1.50
+pantomime,DGCNN-lite+t,supp:occluded,DBSCAN,33.77,0.81
+pantomime,DGCNN-lite+t,supp:occluded,raw,74.60,2.13
+pantomime,DGCNN-lite+t,supp:occluded,gate,50.20,2.25
+pantomime,DGCNN-lite+t,supp:occluded,gate+DBSCAN,31.39,1.55
+pantomime,P4T-lite,supp:occluded,DBSCAN,36.51,0.18
+pantomime,P4T-lite,supp:occluded,raw,70.24,2.92
+pantomime,P4T-lite,supp:occluded,gate,59.72,2.74
+pantomime,P4T-lite,supp:occluded,gate+DBSCAN,37.62,1.80
+pantomime,Pantomime-style,supp:occluded,DBSCAN,21.23,0.77
+pantomime,Pantomime-style,supp:occluded,raw,61.27,5.49
+pantomime,Pantomime-style,supp:occluded,gate,12.70,4.12
+pantomime,Pantomime-style,supp:occluded,gate+DBSCAN,23.13,1.91
+pantomime,RadHAR,supp:occluded,DBSCAN,29.96,4.57
+pantomime,RadHAR,supp:occluded,raw,53.33,2.69
+pantomime,RadHAR,supp:occluded,gate,51.47,2.04
+pantomime,RadHAR,supp:occluded,gate+DBSCAN,25.71,4.23
+pantomime,PointNet+t-tiny,supp:occluded,DBSCAN,25.20,0.36
+pantomime,PointNet+t-tiny,supp:occluded,raw,51.67,1.15
+pantomime,PointNet+t-tiny,supp:occluded,gate,16.90,0.93
+pantomime,PointNet+t-tiny,supp:occluded,gate+DBSCAN,24.72,0.30
+pantomime,P4T-tiny,supp:occluded,DBSCAN,35.16,0.66
+pantomime,P4T-tiny,supp:occluded,raw,71.90,4.41
+pantomime,P4T-tiny,supp:occluded,gate,59.92,1.92
+pantomime,P4T-tiny,supp:occluded,gate+DBSCAN,37.74,1.60
+pantomime,TVoxNet-A,supp:occluded,DBSCAN,33.53,0.27
+pantomime,TVoxNet-A,supp:occluded,raw,62.46,0.54
+pantomime,TVoxNet-A,supp:occluded,gate,46.71,3.39
+pantomime,TVoxNet-A,supp:occluded,gate+DBSCAN,32.66,0.86
+pantomime,PointNet+t,supp:multi_people,DBSCAN,96.83,0.55
+pantomime,PointNet+t,supp:multi_people,raw,64.44,1.10
+pantomime,PointNet+t,supp:multi_people,gate,99.05,0.95
+pantomime,PointNet+t,supp:multi_people,gate+DBSCAN,97.46,0.55
+pantomime,PointNet++,supp:multi_people,DBSCAN,98.41,1.10
+pantomime,PointNet++,supp:multi_people,raw,96.83,1.98
+pantomime,PointNet++,supp:multi_people,gate,100.00,0.00
+pantomime,PointNet++,supp:multi_people,gate+DBSCAN,98.10,0.00
+pantomime,DGCNN-lite+t,supp:multi_people,DBSCAN,98.41,0.55
+pantomime,DGCNN-lite+t,supp:multi_people,raw,94.29,1.90
+pantomime,DGCNN-lite+t,supp:multi_people,gate,100.00,0.00
+pantomime,DGCNN-lite+t,supp:multi_people,gate+DBSCAN,98.10,0.00
+pantomime,P4T-lite,supp:multi_people,DBSCAN,98.73,0.55
+pantomime,P4T-lite,supp:multi_people,raw,98.10,0.00
+pantomime,P4T-lite,supp:multi_people,gate,99.68,0.55
+pantomime,P4T-lite,supp:multi_people,gate+DBSCAN,98.41,0.55
+pantomime,Pantomime-style,supp:multi_people,DBSCAN,99.37,0.55
+pantomime,Pantomime-style,supp:multi_people,raw,87.30,2.20
+pantomime,Pantomime-style,supp:multi_people,gate,98.41,0.55
+pantomime,Pantomime-style,supp:multi_people,gate+DBSCAN,98.41,0.55
+pantomime,RadHAR,supp:multi_people,DBSCAN,98.41,0.55
+pantomime,RadHAR,supp:multi_people,raw,97.46,1.45
+pantomime,RadHAR,supp:multi_people,gate,95.87,1.45
+pantomime,RadHAR,supp:multi_people,gate+DBSCAN,98.10,0.00
+pantomime,PointNet+t-tiny,supp:multi_people,DBSCAN,97.46,0.55
+pantomime,PointNet+t-tiny,supp:multi_people,raw,64.44,4.70
+pantomime,PointNet+t-tiny,supp:multi_people,gate,99.68,0.55
+pantomime,PointNet+t-tiny,supp:multi_people,gate+DBSCAN,97.14,0.95
+pantomime,P4T-tiny,supp:multi_people,DBSCAN,98.10,0.00
+pantomime,P4T-tiny,supp:multi_people,raw,97.46,0.55
+pantomime,P4T-tiny,supp:multi_people,gate,99.37,0.55
+pantomime,P4T-tiny,supp:multi_people,gate+DBSCAN,98.41,1.10
+pantomime,TVoxNet-A,supp:multi_people,DBSCAN,98.73,0.55
+pantomime,TVoxNet-A,supp:multi_people,raw,99.37,1.10
+pantomime,TVoxNet-A,supp:multi_people,gate,98.73,0.55
+pantomime,TVoxNet-A,supp:multi_people,gate+DBSCAN,97.46,0.55
+pantomime,PointNet+t,supp:open_1m_allangles_speeds,DBSCAN,92.01,0.37
+pantomime,PointNet+t,supp:open_1m_allangles_speeds,raw,75.76,0.65
+pantomime,PointNet+t,supp:open_1m_allangles_speeds,gate,88.23,0.34
+pantomime,PointNet+t,supp:open_1m_allangles_speeds,gate+DBSCAN,91.71,0.33
+pantomime,PointNet++,supp:open_1m_allangles_speeds,DBSCAN,94.49,0.12
+pantomime,PointNet++,supp:open_1m_allangles_speeds,raw,93.78,0.15
+pantomime,PointNet++,supp:open_1m_allangles_speeds,gate,94.59,0.28
+pantomime,PointNet++,supp:open_1m_allangles_speeds,gate+DBSCAN,94.68,0.24
+pantomime,DGCNN-lite+t,supp:open_1m_allangles_speeds,DBSCAN,95.37,0.22
+pantomime,DGCNN-lite+t,supp:open_1m_allangles_speeds,raw,92.32,0.47
+pantomime,DGCNN-lite+t,supp:open_1m_allangles_speeds,gate,95.11,0.18
+pantomime,DGCNN-lite+t,supp:open_1m_allangles_speeds,gate+DBSCAN,95.40,0.27
+pantomime,P4T-lite,supp:open_1m_allangles_speeds,DBSCAN,95.07,0.41
+pantomime,P4T-lite,supp:open_1m_allangles_speeds,raw,92.33,0.75
+pantomime,P4T-lite,supp:open_1m_allangles_speeds,gate,95.23,0.27
+pantomime,P4T-lite,supp:open_1m_allangles_speeds,gate+DBSCAN,95.31,0.21
+pantomime,Pantomime-style,supp:open_1m_allangles_speeds,DBSCAN,92.33,0.44
+pantomime,Pantomime-style,supp:open_1m_allangles_speeds,raw,84.69,0.61
+pantomime,Pantomime-style,supp:open_1m_allangles_speeds,gate,92.20,0.40
+pantomime,Pantomime-style,supp:open_1m_allangles_speeds,gate+DBSCAN,93.51,0.54
+pantomime,RadHAR,supp:open_1m_allangles_speeds,DBSCAN,90.85,0.75
+pantomime,RadHAR,supp:open_1m_allangles_speeds,raw,85.25,0.79
+pantomime,RadHAR,supp:open_1m_allangles_speeds,gate,88.27,0.39
+pantomime,RadHAR,supp:open_1m_allangles_speeds,gate+DBSCAN,91.35,0.48
+pantomime,PointNet+t-tiny,supp:open_1m_allangles_speeds,DBSCAN,91.61,0.50
+pantomime,PointNet+t-tiny,supp:open_1m_allangles_speeds,raw,75.30,0.76
+pantomime,PointNet+t-tiny,supp:open_1m_allangles_speeds,gate,88.22,0.59
+pantomime,PointNet+t-tiny,supp:open_1m_allangles_speeds,gate+DBSCAN,91.61,0.23
+pantomime,P4T-tiny,supp:open_1m_allangles_speeds,DBSCAN,94.64,0.52
+pantomime,P4T-tiny,supp:open_1m_allangles_speeds,raw,91.89,0.78
+pantomime,P4T-tiny,supp:open_1m_allangles_speeds,gate,95.07,0.70
+pantomime,P4T-tiny,supp:open_1m_allangles_speeds,gate+DBSCAN,94.87,0.52
+pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,DBSCAN,93.44,0.16
+pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,raw,89.60,0.31
+pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,gate,92.06,0.20
+pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,gate+DBSCAN,93.80,0.19

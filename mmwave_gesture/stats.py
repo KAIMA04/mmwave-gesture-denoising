@@ -1,8 +1,12 @@
 """User-level statistics of the paper from the per-trial predictions written by train.py.
 
 Per user: accuracy averaged over 3 seeds (users with >= 50 test trials). Paired differences are tested with a
-two-sided Wilcoxon signed-rank test and a sign-flip permutation test; 95% CIs bootstrap over users; Holm-Bonferroni
-correction over all tests of the family. Also prints pooled accuracies (mean over seeds) per model and input.
+two-sided Wilcoxon signed-rank test and a sign-flip permutation test; 95% CIs bootstrap over users (unadjusted).
+Holm-Bonferroni correction within four families defined by role (`family`, `p_wil_fam`): F1 primary local-minus-global
+contrasts of raw vs. DBSCAN (per-sample; fixed scale), F2 control contrasts (gate, gate-only, fixed x gate, failure
+trials excluded), F3 per-model comparisons, F4 exploratory contrasts (alternative groupings; unadjusted p only).
+A single Holm over all tests is kept as a sensitivity check (`p_wil_holm`). Equivalence of the fixed-scale contrasts:
+TOST with one-sided Wilcoxon tests at +-2 pp (`tost`). Also prints pooled accuracies (mean over seeds) per model and input.
 
 Usage: python -m mmwave_gesture.stats --data data --runs runs --out stats.json
 """
@@ -50,6 +54,7 @@ class Stats:
                    'mh': (load_preds(os.path.join(runs, 'mhomeges_preds.jsonl')), H['gesture'], H['user'])}
         self.mask = None
         self.rows = []
+        self.diffs = []
         cache = os.path.join(runs, 'near_field_failures.npy')
         if not os.path.exists(cache):
             off, pts = P['off'], P['pts']
@@ -89,6 +94,7 @@ class Stats:
         self.rows.append(dict(fam=fam, ds=ds, proto=proto, a=a, b=b, label=label, n=len(d), mean=float(d.mean()),
                               median=float(np.median(d)), pos=int((d > 0).sum()), neg=int((d < 0).sum()),
                               p_wil=float(wilcoxon(d).pvalue) if np.any(d != 0) else 1.0, p_perm=float(self.signflip(d)), ci=self.boot(d)))
+        self.diffs.append(np.asarray(d, float))
 
     def test(self, ds, proto, a, b, label, fam):
         """Per-user accuracy of b minus a."""
@@ -123,6 +129,39 @@ class Stats:
                 adj[i] = run
             for r, v in zip(self.rows, adj):
                 r[key + '_holm'] = float(v)
+
+    @staticmethod
+    def family(r):
+        f, label = r['fam'], r['label']
+        if f == 'interaction' or (f in ('ctl_fix', 'ctl_fix_mh') and label == 'interaction FIXED raw-vs-DB'):
+            return 'F1 primary'
+        if f in ('ctl_gate', 'ctl_gateonly', 'ctl_fixgate', 'interaction_mask') and label.startswith('interaction'):
+            return 'F2 control contrasts'
+        if f.endswith('_alt') or f == 'ctl_fix_pt':
+            return 'F4 exploratory'
+        return 'F3 per-model'
+
+    def holm_families(self):
+        for r in self.rows:
+            r['family'] = self.family(r)
+        for fam in sorted({r['family'] for r in self.rows}):
+            idx = [i for i, r in enumerate(self.rows) if r['family'] == fam]
+            ps = np.array([self.rows[i]['p_wil'] for i in idx])
+            adj, run = np.empty(len(ps)), 0
+            for rank, j in enumerate(np.argsort(ps)):
+                run = max(run, min(1, (len(ps) - rank) * ps[j]))
+                adj[j] = run
+            for i, v in zip(idx, adj):
+                self.rows[i]['p_wil_fam'] = None if fam.startswith('F4') else float(v)
+
+    def tost(self, margin=2.0):
+        rng = np.random.default_rng(1)
+        for r, d in zip(self.rows, self.diffs):
+            if r['label'] in ('interaction FIXED raw-vs-DB', 'interaction FIXED gate-vs-gateDB'):
+                lo = wilcoxon(d + margin, alternative='greater').pvalue
+                hi = wilcoxon(d - margin, alternative='less').pvalue
+                b = rng.choice(d, (20000, len(d))).mean(1)
+                r['tost'] = dict(margin=margin, p_tost=float(max(lo, hi)), ci90=[float(x) for x in np.percentile(b, [5, 95])])
 
     def pooled(self, ds, m, proto):
         preds, y, _ = self.ds[ds]
@@ -212,7 +251,17 @@ def paper_family(S):
     for a, b, l in [('abl_gate_fix', 'p4t_tiny_gate_fix', 'P4T-tiny-A (FIX gate)'), ('abl_gate_fix', 'pointnet_t_tiny_gate_fix', 'PN+t-tiny-A (FIX gate)'),
                     ('p4t_aug_noden_fix', 'pn2_t_aug_gate_fix', 'PN++ FIX gate - P4T-lite FIX raw')]:
         S.test('pant', 'LUO5', a, b, l, 'ctl_compute')
+    # fixed-scale control on mHomeGes (raw and DBSCAN only); skipped with a message if the runs are missing
+    fd, fr = V['fixDB'], V['fixraw']
+    for proto in ['LUO5', 'near->far']:
+        S.contrast('mh', proto, [(fd[m], fr[m]) for m in LOCAL], [(fd[m], fr[m]) for m in GLOBAL], 'interaction FIXED raw-vs-DB', 'ctl_fix_mh')
+        S.contrast('mh', proto, [(fd[m], fr[m]) for m in LOCAL[:-1]], [(fd[m], fr[m]) for m in GLOBAL + ['pantomime_aug']],
+                   'interaction FIXED (PS global)', 'ctl_fix_mh_alt')
+        for m in fd:
+            S.test('mh', proto, fd[m], fr[m], NAMES[m] + ' FIX raw-DB', 'ctl_fix_mh')
     S.holm()
+    S.holm_families()
+    S.tost()
 
 
 def main():
@@ -235,8 +284,10 @@ def main():
     paper_family(S)
     print('family size', len(S.rows))
     for r in S.rows:
-        print('%-16s %-4s %-13s %-40s n=%2d mean=%+6.2f CI[%+.2f,%+.2f] +%d/-%d pW=%.2g pPerm=%.2g Holm(W)=%.2g Holm(perm)=%.2g' % (
-            r['fam'], r['ds'], r['proto'], r['label'], r['n'], r['mean'], *r['ci'], r['pos'], r['neg'], r['p_wil'], r['p_perm'], r['p_wil_holm'], r['p_perm_holm']))
+        pf = r['p_wil_fam']
+        print('%-20s %-16s %-4s %-13s %-40s n=%2d mean=%+6.2f CI[%+.2f,%+.2f] +%d/-%d pW=%.2g pPerm=%.2g Holm(family)=%s Holm(all)=%.2g%s' % (
+            r['family'], r['fam'], r['ds'], r['proto'], r['label'], r['n'], r['mean'], *r['ci'], r['pos'], r['neg'], r['p_wil'], r['p_perm'],
+            '--' if pf is None else '%.2g' % pf, r['p_wil_holm'], '' if 'tost' not in r else ' TOST(+-2pp) p=%.2g' % r['tost']['p_tost']))
     json.dump(dict(tests=S.rows, pooled=pooled), open(a.out, 'w'), indent=1)
 
 
