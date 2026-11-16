@@ -1,0 +1,9 @@
+torch>=2.4
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+pandas>=2.0
+# optional, for mmwave_gesture.benchmark
+thop>=0.1.1
+onnx>=1.16
+onnxruntime>=1.18
