@@ -2,7 +2,7 @@
 
 Code and per-user splits for the IEEE RadarConf 2027 submission
 
-**Denoising mmWave Gesture Point Clouds: Normalisation-Dependent Effects and a Compute-Matched Voxel vs. Point Comparison**
+**Denoising mmWave Gesture Point Clouds for Deep Networks: Normalisation-Dependent Effects and a Compute-Matched Voxel vs. Point Comparison**
 Kai Ma (University of Liverpool; now with Duke Kunshan University)
 
 ## Contents
