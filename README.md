@@ -22,7 +22,7 @@ Kai Ma (University of Liverpool; now with Duke Kunshan University)
 | `splits/` | Per-user splits as JSON and CSV (see below) |
 | `tests/smoke_test.py` | CPU smoke test on synthetic data |
 
-**Results:** `results/controls_full.csv` lists the pooled Pantomime accuracies (mean and std over 3 seeds, %) of the nine models for every input (raw, DBSCAN, gate, gate+DBSCAN, and the fixed-scale versions), every protocol (LUO5, office->open, open->office) and the supplementary scenes (no fixed-scale runs there). `results/tests.csv` lists all 302 user-level tests of the paper (Holm family, per-user mean and median difference, 95% bootstrap CI, Wilcoxon and sign-flip p, Holm within the family and over all 302 tests, TOST at +-2 pp for the fixed-scale contrasts). Both are summaries; they contain no radar data.
+**Results:** `results/controls_full.csv` lists the pooled accuracies (mean and std over 3 seeds, %) of the nine models: on Pantomime for every input (raw, DBSCAN, gate, gate+DBSCAN, and the fixed-scale versions), every protocol (LUO5, office->open, open->office) and the supplementary scenes (no fixed-scale runs there); on mHomeGes for raw, DBSCAN, fixed raw and fixed DBSCAN, LUO5 and near->far (cross-distance). `results/tests.csv` lists all 324 user-level tests of the paper (Holm family, per-user mean and median difference, 95% bootstrap CI, Wilcoxon and sign-flip p, Holm within the family and over all 324 tests, TOST at +-2 pp for the fixed-scale contrasts). Both are summaries; they contain no radar data.
 
 **Not released:** this repository contains no radar data. The self-recorded IWR6843AOP case-study recordings are not released.
 
@@ -51,7 +51,7 @@ python -m mmwave_gesture.prepare_mhomeges --root PATH/mHomeGes-dataset-master --
 python -m mmwave_gesture.train tvoxA,abl_noden,p4t_tiny,p4t_tiny_noden --dataset pantomime --seeds 0,1,2
 python -m mmwave_gesture.train tvoxA,abl_noden --dataset mhomeges --protocols luo5,xdist --seeds 0,1,2
 
-# 3. User-level statistics: needs all configurations of the paper (see stats.py) for 3 seeds; 302 tests, Holm within four families (F1 primary, F2 controls, F3 per-model, F4 exploratory, unadjusted) plus one Holm over all 302 as a sensitivity check
+# 3. User-level statistics: needs all configurations of the paper (see stats.py) for 3 seeds; 324 tests, Holm within four families (F1 primary: 10, F2 controls: 12, F3 per-model: 280, F4 exploratory: 22, unadjusted) plus one Holm over all 324 as a sensitivity check
 python -m mmwave_gesture.stats --data data --runs runs --out stats.json
 
 # Figure of the interaction contrast (needs matplotlib)

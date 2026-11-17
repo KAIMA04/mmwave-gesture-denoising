@@ -395,3 +395,75 @@ pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,DBSCAN,93.44,0.16
 pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,raw,89.60,0.31
 pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,gate,92.06,0.20
 pantomime,TVoxNet-A,supp:open_1m_allangles_speeds,gate+DBSCAN,93.80,0.19
+mhomeges,PointNet+t-tiny,LUO5,DBSCAN,83.43,0.13
+mhomeges,PointNet+t-tiny,LUO5,raw,82.08,0.21
+mhomeges,PointNet+t-tiny,LUO5,fixed DBSCAN,82.53,0.18
+mhomeges,PointNet+t-tiny,LUO5,fixed raw,84.20,0.14
+mhomeges,PointNet+t-tiny,near->far,DBSCAN,78.24,0.40
+mhomeges,PointNet+t-tiny,near->far,raw,60.67,0.40
+mhomeges,PointNet+t-tiny,near->far,fixed DBSCAN,30.24,1.16
+mhomeges,PointNet+t-tiny,near->far,fixed raw,30.45,1.40
+mhomeges,P4T-tiny,LUO5,DBSCAN,85.30,0.09
+mhomeges,P4T-tiny,LUO5,raw,86.85,0.59
+mhomeges,P4T-tiny,LUO5,fixed DBSCAN,85.97,0.04
+mhomeges,P4T-tiny,LUO5,fixed raw,87.88,0.18
+mhomeges,P4T-tiny,near->far,DBSCAN,79.58,0.39
+mhomeges,P4T-tiny,near->far,raw,71.25,0.97
+mhomeges,P4T-tiny,near->far,fixed DBSCAN,37.32,0.81
+mhomeges,P4T-tiny,near->far,fixed raw,35.59,2.06
+mhomeges,PointNet+t,LUO5,DBSCAN,83.61,0.04
+mhomeges,PointNet+t,LUO5,raw,80.64,1.02
+mhomeges,PointNet+t,LUO5,fixed DBSCAN,82.97,0.11
+mhomeges,PointNet+t,LUO5,fixed raw,84.13,0.40
+mhomeges,PointNet+t,near->far,DBSCAN,78.54,0.29
+mhomeges,PointNet+t,near->far,raw,58.82,1.46
+mhomeges,PointNet+t,near->far,fixed DBSCAN,29.44,1.91
+mhomeges,PointNet+t,near->far,fixed raw,30.80,1.05
+mhomeges,PointNet++,LUO5,DBSCAN,85.60,0.23
+mhomeges,PointNet++,LUO5,raw,88.14,0.09
+mhomeges,PointNet++,LUO5,fixed DBSCAN,87.89,0.20
+mhomeges,PointNet++,LUO5,fixed raw,90.15,0.07
+mhomeges,PointNet++,near->far,DBSCAN,80.01,0.71
+mhomeges,PointNet++,near->far,raw,75.95,1.09
+mhomeges,PointNet++,near->far,fixed DBSCAN,76.85,0.79
+mhomeges,PointNet++,near->far,fixed raw,83.94,0.74
+mhomeges,DGCNN-lite+t,LUO5,DBSCAN,86.02,0.09
+mhomeges,DGCNN-lite+t,LUO5,raw,86.86,0.10
+mhomeges,DGCNN-lite+t,LUO5,fixed DBSCAN,86.67,0.37
+mhomeges,DGCNN-lite+t,LUO5,fixed raw,88.78,0.10
+mhomeges,DGCNN-lite+t,near->far,DBSCAN,81.06,0.23
+mhomeges,DGCNN-lite+t,near->far,raw,70.87,0.62
+mhomeges,DGCNN-lite+t,near->far,fixed DBSCAN,38.08,3.49
+mhomeges,DGCNN-lite+t,near->far,fixed raw,34.38,2.32
+mhomeges,P4T-lite,LUO5,DBSCAN,86.07,0.22
+mhomeges,P4T-lite,LUO5,raw,87.47,0.09
+mhomeges,P4T-lite,LUO5,fixed DBSCAN,86.36,0.14
+mhomeges,P4T-lite,LUO5,fixed raw,88.27,0.02
+mhomeges,P4T-lite,near->far,DBSCAN,79.28,0.18
+mhomeges,P4T-lite,near->far,raw,72.05,1.01
+mhomeges,P4T-lite,near->far,fixed DBSCAN,39.04,2.63
+mhomeges,P4T-lite,near->far,fixed raw,37.26,2.51
+mhomeges,Pantomime-style,LUO5,DBSCAN,84.85,0.07
+mhomeges,Pantomime-style,LUO5,raw,86.42,0.18
+mhomeges,Pantomime-style,LUO5,fixed DBSCAN,86.36,0.30
+mhomeges,Pantomime-style,LUO5,fixed raw,88.96,0.12
+mhomeges,Pantomime-style,near->far,DBSCAN,80.45,0.15
+mhomeges,Pantomime-style,near->far,raw,68.30,0.70
+mhomeges,Pantomime-style,near->far,fixed DBSCAN,39.46,4.79
+mhomeges,Pantomime-style,near->far,fixed raw,42.82,1.58
+mhomeges,RadHAR,LUO5,DBSCAN,81.92,0.04
+mhomeges,RadHAR,LUO5,raw,75.14,0.18
+mhomeges,RadHAR,LUO5,fixed DBSCAN,74.36,0.46
+mhomeges,RadHAR,LUO5,fixed raw,78.73,0.08
+mhomeges,RadHAR,near->far,DBSCAN,74.79,0.32
+mhomeges,RadHAR,near->far,raw,44.19,0.69
+mhomeges,RadHAR,near->far,fixed DBSCAN,22.14,1.69
+mhomeges,RadHAR,near->far,fixed raw,22.61,1.00
+mhomeges,TVoxNet-A,LUO5,DBSCAN,84.97,0.10
+mhomeges,TVoxNet-A,LUO5,raw,80.64,0.27
+mhomeges,TVoxNet-A,LUO5,fixed DBSCAN,78.15,0.10
+mhomeges,TVoxNet-A,LUO5,fixed raw,81.72,0.10
+mhomeges,TVoxNet-A,near->far,DBSCAN,80.00,0.29
+mhomeges,TVoxNet-A,near->far,raw,51.72,0.89
+mhomeges,TVoxNet-A,near->far,fixed DBSCAN,27.51,1.14
+mhomeges,TVoxNet-A,near->far,fixed raw,22.13,1.02
