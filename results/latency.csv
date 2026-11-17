@@ -1,0 +1,12 @@
+# single-thread CPU latency, batch 1: Intel(R) Core(TM) Ultra 5 230F, torch 2.14.1+cu130, onnxruntime 1.32.0; network: median of 5 repeats of 300-run means; preprocessing: means; e2e = DBSCAN (if any) + voxelisation/resampling + ONNX Runtime network
+model,params,mmacs_thop,net_pytorch_ms,net_ort_ms,e2e_ort_dbscan_ms,e2e_ort_raw_ms
+PointNet+t-tiny,154693,9.69,0.347,0.176,1.79,0.37
+P4T-tiny,76821,9.26,3.159,1.179,2.79,1.37
+PointNet+t,804693,37.62,0.973,0.651,2.27,0.84
+PointNet++,1468309,149.16,9.826,5.105,6.72,5.30
+DGCNN-lite+t,294933,141.17,11.489,7.754,9.37,7.95
+P4Transformer-lite,296981,35.3,3.947,1.798,3.41,1.99
+Pantomime-style,880533,118.67,7.739,3.82,5.44,4.01
+RadHAR,624629,811.09,19.475,19.62,21.09,19.73
+TVoxNet-A,190869,9.72,1.745,1.051,2.52,1.16
+TVoxNet-F,465749,26.43,3.088,2.151,3.62,2.26

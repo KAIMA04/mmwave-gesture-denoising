@@ -2,7 +2,7 @@
 
 Reads the test list written by stats.py and plots, for each protocol, the contrast of skipping DBSCAN
 (raw vs. DBSCAN, and gate vs. gate->DBSCAN) under per-sample and fixed-scale normalisation.
-Error bars: unadjusted 95% bootstrap CIs. Filled markers: Wilcoxon p < 0.05 after Holm within the test's family
+Error bars: unadjusted 95% bootstrap CIs. Colour/shape: normalisation. Filled markers: Wilcoxon p < 0.05 after Holm within the test's family
 (`p_wil_fam`; falls back to `p_wil_holm` for older stats files).
 
 Usage: python -m mmwave_gesture.plot_interaction --stats stats.json --out interaction.pdf
@@ -39,7 +39,7 @@ def main():
                 lo, hi = r['ci']
                 xi = i + (k - 0.5) * 0.28
                 ax.errorbar(xi, r['mean'], yerr=[[r['mean'] - lo], [hi - r['mean']]], fmt=mk, color=col, ms=3.5, lw=0.9, capsize=1.5,
-                            mfc=col if r.get('p_wil_fam', r.get('p_wil_holm')) < 0.05 else 'white', label=name if (i == 0 and proto == 'office->open') else None)
+                            mfc=col if r.get('p_wil_fam', r.get('p_wil_holm')) < 0.05 else 'white')
         ax.axhline(0, color='0.5', lw=0.6)
         if a.margin > 0:
             ax.axhspan(-a.margin, a.margin, color='0.85', lw=0, zorder=0.5)
@@ -49,7 +49,13 @@ def main():
         ax.set_title(title, fontsize=7, pad=2)
         ax.tick_params(length=2, pad=1)
     axes[0].set_ylabel('local $-$ global (pp)')
-    axes[2].legend(fontsize=5.5, frameon=False, loc='upper right', handletextpad=0.2, borderaxespad=0.1)
+    # legend: colour and shape give the scale; fill gives significance (open marker: family-wise Holm p >= 0.05)
+    from matplotlib.lines import Line2D
+    handles = [Line2D([], [], ls='', marker=mk, color=col, ms=3.5, label=name) for name, col, mk, _ in SERIES]
+    handles.append(Line2D([], [], ls='', marker='o', color='0.4', mfc='white', ms=3.5, label='open: $p_H\\geq$0.05'))
+    lo, hi = axes[1].get_ylim()
+    axes[1].set_ylim(lo, hi + 0.35 * (hi - lo))
+    axes[1].legend(handles=handles, fontsize=5, frameon=False, loc='upper right', handletextpad=0.2, borderaxespad=0.1, labelspacing=0.2)
     fig.tight_layout(pad=0.2, w_pad=0.4)
     fig.savefig(a.out)
 

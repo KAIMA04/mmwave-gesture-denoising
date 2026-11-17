@@ -2,8 +2,10 @@
 
 Code and per-user splits for the IEEE RadarConf 2027 submission
 
-**Denoising mmWave Gesture Point Clouds for Deep Networks: Normalisation-Dependent Effects and a Compute-Matched Voxel vs. Point Comparison**
+**DBSCAN Denoising and Coordinate Normalisation for mmWave Gesture Point Clouds: Architecture-Dependent Effects under Room and Distance Shift**
 Kai Ma (University of Liverpool; now with Duke Kunshan University)
+
+The paper re-trains nine point and voxel gesture networks on raw, DBSCAN-cleaned and near-field-gated radar points with per-sample or fixed coordinate scaling. With per-sample scaling, skipping DBSCAN costs global-pooling and voxel models more than neighbourhood-based ones for every test user on Pantomime open->office (+17.6 pp, 26/26 users), mHomeGes leave-users-out (+5.5 pp, 25/25) and mHomeGes near->far (+13.6 pp, 19/19). A fixed coordinate scale makes the in-distribution contrast negligible (within +-2 pp) but leaves +4.6 pp open->office, and most models fall to 22-43% across distance. The Pantomime in-distribution contrast (+2.1 pp, Holm over all 332 tests p=0.052) is exploratory. A 9.7-MMAC voxel network (TVoxNet) is a compact reference that trails a compute-matched P4Transformer.
 
 ## Contents
 
@@ -22,7 +24,7 @@ Kai Ma (University of Liverpool; now with Duke Kunshan University)
 | `splits/` | Per-user splits as JSON and CSV (see below) |
 | `tests/smoke_test.py` | CPU smoke test on synthetic data |
 
-**Results:** `results/controls_full.csv` lists the pooled accuracies (mean and std over 3 seeds, %) of the nine models: on Pantomime for every input (raw, DBSCAN, gate, gate+DBSCAN, and the fixed-scale versions), every protocol (LUO5, office->open, open->office) and the supplementary scenes (no fixed-scale runs there); on mHomeGes for raw, DBSCAN, fixed raw and fixed DBSCAN, LUO5 and near->far (cross-distance). `results/tests.csv` lists all 332 user-level tests of the paper (Holm family, per-user mean and median difference, 95% bootstrap CI, Wilcoxon and sign-flip p, Holm within the family and over all 332 tests; TOST at +-2 pp with its 90% CI and at +-1 pp for the fixed-scale and the per-sample local-minus-global contrasts). Families: F1 primary raw-vs.-DBSCAN contrasts (per-sample and fixed scale), F2 gate controls, F3 per-model tests, F4 exploratory regroupings (unadjusted), F5 per-user differences between the per-sample and the fixed-scale contrasts (`threeway`). The families, the local/global grouping and the +-2 pp margin were set after the results. `results/ablation.csv` lists the TVoxNet ablations (Pantomime LUO5, mean over 3 seeds). All three are summaries; they contain no radar data.
+**Results:** `results/controls_full.csv` lists the pooled accuracies (mean and std over 3 seeds, %) of the nine models: on Pantomime for every input (raw, DBSCAN, gate, gate+DBSCAN, and the fixed-scale versions), every protocol (LUO5, office->open, open->office) and the supplementary scenes (no fixed-scale runs there); on mHomeGes for raw, DBSCAN, fixed raw and fixed DBSCAN, LUO5 and near->far (cross-distance). `results/tests.csv` lists all 332 user-level tests of the paper (Holm family, per-user mean and median difference, 95% bootstrap CI, Wilcoxon and sign-flip p, Holm within the family and over all 332 tests; TOST at +-2 pp with its 90% CI and at +-1 pp for the fixed-scale and the per-sample local-minus-global contrasts). Families: F1 primary raw-vs.-DBSCAN contrasts (per-sample and fixed scale), F2 gate controls, F3 per-model tests, F4 exploratory regroupings (unadjusted), F5 per-user differences between the per-sample and the fixed-scale contrasts (`threeway`). The families, the local/global grouping and the +-2 pp margin were set after the results. `results/ablation.csv` lists the TVoxNet ablations (Pantomime LUO5, mean over 3 seeds). `results/latency.csv` lists parameters, MACs and single-thread CPU latency (PyTorch and ONNX Runtime network time, end-to-end with and without DBSCAN). All four are summaries; they contain no radar data.
 
 **Not released:** this repository contains no radar data. The self-recorded IWR6843AOP case-study recordings are not released.
 
