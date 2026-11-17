@@ -26,11 +26,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--stats', default='stats.json')
     ap.add_argument('--out', default='interaction.pdf')
+    ap.add_argument('--size', type=float, nargs=2, default=(3.5, 1.65), help='figure width and height in inches (place at 100%% so text stays at 7 pt)')
     ap.add_argument('--margin', type=float, default=2.0, help='equivalence margin drawn as a grey band (0: none)')
     a = ap.parse_args()
     rows = {(r['ds'], r['proto'], r['label']): r for r in load(a.stats)}
     plt.rcParams.update({'font.size': 7, 'pdf.fonttype': 42, 'ps.fonttype': 42})
-    fig, axes = plt.subplots(1, 3, figsize=(3.5, 1.55), sharey=False)
+    fig, axes = plt.subplots(1, 3, figsize=tuple(a.size), sharey=False)
     xs = list(SERIES[0][3])
     for ax, (proto, title) in zip(axes, PANELS):
         for k, (name, col, mk, labels) in enumerate(SERIES):
@@ -44,19 +45,18 @@ def main():
         if a.margin > 0:
             ax.axhspan(-a.margin, a.margin, color='0.85', lw=0, zorder=0.5)
         ax.set_xticks(range(len(xs)))
-        ax.set_xticklabels(xs, fontsize=5.5)
+        ax.set_xticklabels([x.replace('/', '/\n') for x in xs], fontsize=7)
         ax.set_xlim(-0.5, len(xs) - 0.5)
         ax.set_title(title, fontsize=7, pad=2)
-        ax.tick_params(length=2, pad=1)
+        ax.tick_params(length=2, pad=1, labelsize=7)
     axes[0].set_ylabel('local $-$ global (pp)')
     # legend: colour and shape give the scale; fill gives significance (open marker: family-wise Holm p >= 0.05)
     from matplotlib.lines import Line2D
     handles = [Line2D([], [], ls='', marker=mk, color=col, ms=3.5, label=name) for name, col, mk, _ in SERIES]
     handles.append(Line2D([], [], ls='', marker='o', color='0.4', mfc='white', ms=3.5, label='open: $p_H\\geq$0.05'))
-    lo, hi = axes[1].get_ylim()
-    axes[1].set_ylim(lo, hi + 0.35 * (hi - lo))
-    axes[1].legend(handles=handles, fontsize=5, frameon=False, loc='upper right', handletextpad=0.2, borderaxespad=0.1, labelspacing=0.2)
-    fig.tight_layout(pad=0.2, w_pad=0.4)
+    fig.legend(handles=handles, fontsize=7, frameon=False, loc='upper center', ncol=3, handletextpad=0.2, columnspacing=1.0,
+               borderaxespad=0.1)
+    fig.tight_layout(pad=0.2, w_pad=0.4, rect=(0, 0, 1, 0.88))
     fig.savefig(a.out)
 
 
