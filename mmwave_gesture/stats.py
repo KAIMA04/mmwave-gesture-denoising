@@ -4,9 +4,10 @@ Per user: accuracy averaged over 3 seeds (users with >= 50 test trials). Paired 
 two-sided Wilcoxon signed-rank test and a sign-flip permutation test; 95% CIs bootstrap over users (unadjusted).
 Holm-Bonferroni correction within four families defined by role (`family`, `p_wil_fam`): F1 primary local-minus-global
 contrasts of raw vs. DBSCAN (per-sample; fixed scale), F2 control contrasts (gate, gate-only, fixed x gate, failure
-trials excluded), F3 per-model comparisons, F4 exploratory contrasts (alternative groupings; unadjusted p only).
+trials excluded), F3 per-model comparisons, F4 exploratory contrasts (alternative groupings; unadjusted p only), F5 per-user differences
+between the per-sample and the fixed-scale contrasts (`threeway`).
 A single Holm over all tests is kept as a sensitivity check (`p_wil_holm`). Equivalence of the fixed-scale contrasts:
-TOST with one-sided Wilcoxon tests at +-2 pp (`tost`). Also prints pooled accuracies (mean over seeds) per model and input.
+TOST with one-sided Wilcoxon tests at +-2 pp (`tost`; +-1 pp: `tost1`; per-sample contrasts: `tost_ps`). Also prints pooled accuracies (mean over seeds) per model and input.
 
 Usage: python -m mmwave_gesture.stats --data data --runs runs --out stats.json
 """
@@ -120,6 +121,17 @@ class Stats:
             D[grp] = np.mean(diffs, 0)
         self._row(fam, ds, proto, 'global', 'local', label, D['l'] - D['g'])
 
+    def threeway(self, ds, proto, lab_ps, lab_fix, label):
+        """Per user: per-sample contrast minus fixed-scale contrast (normalisation x denoising x architecture)."""
+        ia = [i for i, r in enumerate(self.rows) if (r['ds'], r['proto'], r['label']) == (ds, proto, lab_ps)]
+        ib = [i for i, r in enumerate(self.rows) if (r['ds'], r['proto'], r['label']) == (ds, proto, lab_fix)]
+        if len(ia) != 1 or len(ib) != 1:
+            print('missing three-way:', ds, proto, label)
+            return
+        da, db = self.diffs[ia[0]], self.diffs[ib[0]]
+        assert len(da) == len(db)
+        self._row('threeway', ds, proto, lab_fix, lab_ps, label, da - db)
+
     def holm(self):
         for key in ['p_perm', 'p_wil']:
             ps = np.array([r[key] for r in self.rows])
@@ -139,6 +151,8 @@ class Stats:
             return 'F2 control contrasts'
         if f.endswith('_alt') or f == 'ctl_fix_pt':
             return 'F4 exploratory'
+        if f == 'threeway':
+            return 'F5 normalisation x contrast'
         return 'F3 per-model'
 
     def holm_families(self):
@@ -162,6 +176,13 @@ class Stats:
                 hi = wilcoxon(d - margin, alternative='less').pvalue
                 b = rng.choice(d, (20000, len(d))).mean(1)
                 r['tost'] = dict(margin=margin, p_tost=float(max(lo, hi)), ci90=[float(x) for x in np.percentile(b, [5, 95])])
+                r['tost1'] = dict(margin=1, p_tost=float(max(wilcoxon(d + 1, alternative='greater').pvalue, wilcoxon(d - 1, alternative='less').pvalue)))
+        # sensitivity: equivalence of the per-sample contrasts (+-1 and +-2 pp) and their 90% CI
+        rng2 = np.random.default_rng(2)
+        for r, d in zip(self.rows, self.diffs):
+            if r['label'] == 'interaction':
+                r['tost_ps'] = {str(m): float(max(wilcoxon(d + m, alternative='greater').pvalue, wilcoxon(d - m, alternative='less').pvalue)) for m in (1, 2)}
+                r['ci90_ps'] = [float(x) for x in np.percentile(rng2.choice(d, (20000, len(d))).mean(1), [5, 95])]
 
     def pooled(self, ds, m, proto):
         preds, y, _ = self.ds[ds]
@@ -259,6 +280,12 @@ def paper_family(S):
                    'interaction FIXED (PS global)', 'ctl_fix_mh_alt')
         for m in fd:
             S.test('mh', proto, fd[m], fr[m], NAMES[m] + ' FIX raw-DB', 'ctl_fix_mh')
+    # F5: does the local-minus-global contrast depend on the normalisation? (per-sample minus fixed scale, per user)
+    for proto in PANT_PROTOS:
+        S.threeway('pant', proto, 'interaction', 'interaction FIXED raw-vs-DB', '3-way raw/DB: per-sample minus fixed')
+        S.threeway('pant', proto, 'interaction gate-vs-gateDB', 'interaction FIXED gate-vs-gateDB', '3-way gate/gateDB: per-sample minus fixed')
+    for proto in ['LUO5', 'near->far']:
+        S.threeway('mh', proto, 'interaction', 'interaction FIXED raw-vs-DB', '3-way raw/DB: per-sample minus fixed')
     S.holm()
     S.holm_families()
     S.tost()

@@ -1,0 +1,19 @@
+group,setting,luo5_acc_pct,luo5_std_pct,open_to_office_acc_pct,mmacs
+slices,T=1,78.7,0.6,67.8,1.2
+slices,T=4,90.5,<=0.3,85.9,4.9
+slices,T=8 (TVoxNet-A),91.9,<=0.3,88.9,9.7
+slices,T=12,92.3,<=0.3,89.7,14.6
+grid,n=12,91.4,<=0.3,88.2,4.4
+grid,n=16 (TVoxNet-A),91.9,<=0.3,88.9,9.7
+grid,n=20,92.0,<=0.3,89.2,17.7
+grid,n=24,92.1,<=0.3,89.8,30.9
+structure,early fusion,90.2,0.2,84.0,2.7
+structure,mean pool over slices,80.2,0.5,69.3,8.9
+structure,GRU instead of temporal conv.,91.4,<=0.3,87.9,9.7
+structure,dense 3D convolutions,92.1,<=0.3,,89.0
+augmentation,TVoxNet-A without augmentation,88.8,0.1,79.8,9.7
+input,none (raw points),92.4,<=0.3,68.4,9.7
+input,isotropic normalisation,92.1,<=0.3,90.3,9.7
+input,radius outlier removal,92.1,<=0.3,68.7,9.7
+input,grid connected components,91.0,<=0.3,87.9,9.7
+input,+ SNR channel,92.0,<=0.3,87.8,11.5
